@@ -1,6 +1,11 @@
+import Controllers.BookController;
+import Views.ViewConsole;
+import Models.Book;
+
 public class App {
     public static void main(String[] args) throws Exception {
 
+        
         Book[] books = {
                 new Book("Clean Code", 2008),
                 new Book("The Pragmatic Programmer", 1999),
@@ -34,5 +39,17 @@ public class App {
                 new Book("The Elements of Statistical Learning", 2001)
         };
 
+        ViewConsole vC = new ViewConsole();
+        BookController bC = new BookController();
+        vC.showArray(books);
+        bC.sortByNameInsertion(books);
+        vC.showArray(books);
+        bC.searchByName(books, "Operating System Concepts");
+        String result = bC.searchByName(books, "Operating System Concepts");
+        if (result != null) {
+            System.out.println("El libro fue encontrado: " + result);
+        } else {
+            System.out.println("El libro no fue encontrado.");
+        }
     }
 }
